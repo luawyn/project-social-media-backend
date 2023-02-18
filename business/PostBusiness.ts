@@ -4,13 +4,14 @@ import {
   GetPostsInputDTO,
   CreatePostInputDTO,
   EditPostInputDTO,
+  DeletePostInputDTO,
 } from "../dtos/userDTO";
 import { BadRequestError } from "../errors/BadRequestError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { Post } from "../models/Post";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenManager } from "../services/TokenManager";
-import { PostDB, PostWithCreatorsDB } from "../types";
+import { PostDB, PostWithCreatorsDB, USER_ROLES } from "../types";
 
 export class PostBusiness {
   constructor(
@@ -114,5 +115,29 @@ export class PostBusiness {
     post.setUpdatedAt(new Date().toISOString());
     const newPostDB = post.toDBModel();
     await this.postDatabase.update(idToEdit, newPostDB);
+  };
+  public deletePost = async (input: DeletePostInputDTO): Promise<void> => {
+    const { idToDelete, token } = input;
+    if (token === undefined) {
+      throw new BadRequestError("token ausente");
+    }
+    const payload = this.tokenManager.getPayload(token);
+    if (payload === null) {
+      throw new BadRequestError("token invalido");
+    }
+
+    const postDB = await this.postDatabase.findById(idToDelete);
+
+    if (!postDB) {
+      throw new NotFoundError("'id' nao encontrado");
+    }
+
+    const creatorId = payload.id;
+
+    if (payload.role !== USER_ROLES.ADMIN && postDB.creator_id !== creatorId) {
+      throw new BadRequestError("Somente quem criou o post pode deleta-lo");
+    }
+
+    await this.postDatabase.delete(idToDelete);
   };
 }
