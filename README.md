@@ -1,7 +1,9 @@
 
 # Projeto Labook
 
-O Labook é uma rede social com o objetivo de promover a conexão e interação entre pessoas. Quem se cadastrar no aplicativo poderá criar e curtir publicações.
+O Labook é uma rede social com o objetivo de promover a conexão e interação entre pessoas. 
+
+Quem se cadastrar no aplicativo poderá criar e curtir publicações.
 ## Documentação da API
 
 #### Cadastra um novo usuário
@@ -59,6 +61,7 @@ Endpoint protegido, requer um token jwt para acessá-lo.
   PUT /posts/:id
 ```
 Endpoint protegido, requer um token jwt para acessá-lo.
+
 Só quem criou o post pode editá-lo e somente o conteúdo pode ser editado.
 
 | Parâmetro   | Tipo       | Descrição                                   |
@@ -73,6 +76,7 @@ Só quem criou o post pode editá-lo e somente o conteúdo pode ser editado.
   DEL /posts/:id
 ```
 Endpoint protegido, requer um token jwt para acessá-lo.
+
 Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer pessoa.
 
 | Parâmetro   | Tipo       | Descrição                                   |
@@ -86,6 +90,7 @@ Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer p
   PUT /posts/:id/like
 ```
 Endpoint protegido, requer um token jwt para acessá-lo.
+
 Quem criou o post não pode dar like ou dislike no mesmo.
 
 Caso dê um like em um post que já tenha dado like, o like é desfeito.
