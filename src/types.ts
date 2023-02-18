@@ -1,6 +1,6 @@
 export enum USER_ROLES {
   NORMAL = "NORMAL",
-  ADMIN = "ADMIN",
+  ADMIN = "ADMIN"
 }
 
 export interface TokenPayload {
@@ -23,7 +23,7 @@ export interface UserDB {
   name: string;
   email: string;
   password: string;
-  role: string;
+  role: USER_ROLES;
   created_at: string;
 }
 
