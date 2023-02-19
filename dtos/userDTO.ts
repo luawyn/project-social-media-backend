@@ -1,4 +1,5 @@
 import { PostModel } from "../types";
+
 export interface SignupInputDTO {
   name: unknown;
   email: unknown;
