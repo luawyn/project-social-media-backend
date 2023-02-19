@@ -3,6 +3,11 @@ export enum USER_ROLES {
   ADMIN = "ADMIN",
 }
 
+export enum PLAYLIST_LIKE {
+  ALREADY_LIKED = "ALREADY LIKED",
+  ALREADY_DISLIKED = "ALREADY DISLIKED",
+}
+
 export interface TokenPayload {
   id: string;
   name: string;
@@ -52,4 +57,10 @@ export interface PostDB {
 
 export interface PostWithCreatorsDB extends PostDB {
   creator_name: string;
+}
+
+export interface LikeDislikeDB {
+  user_id: string;
+  post_id: string;
+  like: number;
 }

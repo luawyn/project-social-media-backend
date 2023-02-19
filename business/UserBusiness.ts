@@ -20,14 +20,18 @@ export class UserBusiness {
     private tokenManager: TokenManager,
     private hashManager: HashManager
   ) {}
+
   public signup = async (input: SignupInputDTO): Promise<SignupOutputDTO> => {
     const { name, email, password } = input;
+
     if (typeof name !== "string") {
       throw new Error("'name' deve ser string");
     }
+
     if (typeof email !== "string") {
       throw new Error("'email' deve ser string");
     }
+
     if (typeof password !== "string") {
       throw new Error("'password' deve ser string");
     }
@@ -58,9 +62,11 @@ export class UserBusiness {
 
   public login = async (input: LoginInputDTO): Promise<LoginOutputDTO> => {
     const { email, password } = input;
+
     if (typeof email !== "string") {
       throw new Error("'email' deve ser string");
     }
+
     if (typeof password !== "string") {
       throw new Error("'password' deve ser string");
     }
@@ -86,6 +92,7 @@ export class UserBusiness {
       password,
       user.getPassword()
     );
+
     if (!isPasswordCorrect) {
       throw new BadRequestError("Senha incorreta");
     }
@@ -101,6 +108,7 @@ export class UserBusiness {
     const output: LoginOutputDTO = {
       token,
     };
+
     return output;
   };
 }
