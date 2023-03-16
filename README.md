@@ -6,6 +6,8 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 Quem se cadastrar no aplicativo poderá criar e curtir publicações.
 ## Documentação da API
 
+[Postman](https://documenter.getpostman.com/view/24460811/2s93Jxrgiy)
+
 #### Cadastra um novo usuário
 
 ```http
